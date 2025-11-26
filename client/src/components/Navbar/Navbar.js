@@ -24,6 +24,7 @@ function Navbar({ contadorCuenta }) {
             <span id="cart-count" aria-live="polite">
               {contadorCuenta}
             </span>
+            <Link to="/login">Login</Link>
           </Link>
         </nav>
 
