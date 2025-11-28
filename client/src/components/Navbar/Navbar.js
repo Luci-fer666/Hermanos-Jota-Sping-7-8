@@ -1,7 +1,10 @@
 import './Navbar.css';
+import { AuthContext } from '../../auth/AuthContext.js';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 function Navbar({ contadorCuenta }) {
+  const { currentUser, logout } = useContext(AuthContext);
   return (
     <>
       <header className="site-header">
@@ -24,8 +27,15 @@ function Navbar({ contadorCuenta }) {
             <span id="cart-count" aria-live="polite">
               {contadorCuenta}
             </span>
-            <Link to="/login">Login</Link>
           </Link>
+          {currentUser ? (
+            <>
+              <span> Bienvenido, {currentUser.username}</span>
+              <button onClick={logout}>Logout</button>
+             </>) : 
+            (
+            <Link to="/login">Login</Link>
+            )}
         </nav>
 
         <form className="search" role="search">
