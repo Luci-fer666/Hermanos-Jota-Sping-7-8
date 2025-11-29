@@ -7,7 +7,7 @@ const Producto = require('./models/Product.js');
 const Usuario = require('./models/User.js');
 const { notFound, errorHandlerServer } = require('./middleware/errorHandlers');
 
-conectarBD;
+conectarBD();
 
 // Middleware global para parsear JSON
 app.use(express.json());
@@ -44,6 +44,6 @@ app.use(errorHandlerServer);
 // ----------------
 
 // Levantar servidor
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`);
+app.listen(process.env.PORT, () => {
+  console.log(`Servidor corriendo en http://localhost:${process.env.PORT}`);
 });
