@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../auth/AuthContext.js';
 import './CrearProducto.css';
 
 function CrearProducto() {
+  const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     nombre: "",
@@ -49,6 +51,10 @@ function CrearProducto() {
       alert(error.message);
     }
   };
+    if (!currentUser || !currentUser.rol || !currentUser.rol.includes('admin')) 
+      {
+        return <p>Debes logearte como administrador para crear productos</p>;
+      }
 
 return (
     <div className="crear-producto-container">

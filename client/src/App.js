@@ -10,29 +10,23 @@ import Registro from './pages/RegistroPage/Register.js';
 import Login from './pages/LoginPage/Login.js';
 import Perfil from './pages/PerfilPage/Perfil.js';
 import Pedidos from './pages/MisPedidosPage/Pedidos.js';
-import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-function App() {
-    const [carrito, setCarrito] = useState([]);
-
-    const agregarAlCarrito = (idProducto) => {
-    setCarrito(prev => [...prev, idProducto]);};
-    
+function App() {  
   return (
     <div className="App">
-      <Navbar  contadorCuenta={carrito.length} />
+      <Navbar/>
       <Routes>
         <Route path="/" element={ <IndexBody/> } />
         <Route path="/productos" element={ <ProductosBody/> } />
-        <Route path="/carrito" element={ <CarritoBody carrito={carrito} /> } />
+        <Route path="/carrito" element={ <CarritoBody/> } />
         <Route path="/contacto" element={ <ContactForm /> } />
         <Route path="/register" element={ <Registro/> } />
         <Route path="/login" element={ <Login/> } />
         <Route path="/perfil/:id" element={ <Perfil/> } />
         <Route path="/admin/crear-producto" element={ <CrearProducto/> } />
         <Route path='/mis-pedidos' element={ <Pedidos/> } />
-        <Route path="/producto/:id" element={ <ProductoIndividualBody agregarAlCarrito={agregarAlCarrito} /> } />
+        <Route path="/producto/:id" element={ <ProductoIndividualBody /> } />
       </Routes>
       <Footer/> 
     </div>

@@ -37,9 +37,7 @@ function Register() {
       }
 
       alert(`¡Registro exitoso para ${formData.username}!`);
-
       setFormData({ username: "", email: "", password: "" });
-
       navigate("/productos");
 
     } catch (error) {
@@ -52,7 +50,6 @@ function Register() {
       <h2 className="titulo-formulario">Crear cuenta nueva</h2>
 
       <form className="formulario-producto" onSubmit={handleSubmit}>
-
         <div className="campo-formulario">
           <label htmlFor="username">Nombre de usuario</label>
           <input

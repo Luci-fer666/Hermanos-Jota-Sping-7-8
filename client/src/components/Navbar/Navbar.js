@@ -1,10 +1,13 @@
 import './Navbar.css';
 import { AuthContext } from '../../auth/AuthContext.js';
+import { CartContext } from '../../auth/CartContext';
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
-function Navbar({ contadorCuenta }) {
+function Navbar() {
   const { currentUser } = useContext(AuthContext);
+  const { cartItems } = useContext(CartContext);
+  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
   const userId = currentUser?.id;
   return (
     <>
@@ -26,7 +29,7 @@ function Navbar({ contadorCuenta }) {
           <Link to="/carrito">
             Carrito{' '}
             <span id="cart-count" aria-live="polite">
-              {contadorCuenta}
+              ({totalItems})
             </span>
           </Link>
           {currentUser ? (

@@ -1,10 +1,12 @@
 import { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { AuthContext } from '../../auth/AuthContext.js';
+import { useNavigate } from 'react-router-dom';
 import './Perfil.css';
 
 function Perfil() {
   const { currentUser, logout } = useContext(AuthContext);
+  const navigate = useNavigate();
   const { id } = useParams();
 
   const [user, setUser] = useState(null);
@@ -47,7 +49,9 @@ function Perfil() {
   }, [id]);
 
   if (loading) return <p>Cargando perfil...</p>;
-  if (!currentUser) return <p>Debes iniciar sesión para visualizar esta página</p>;
+  if (!currentUser){
+    navigate("/login");
+    return <p>Debes iniciar sesión para visualizar esta página</p>;}
   if (error) return <p>Error: {error.message}</p>;
   if (!user) return <p>No se encontró el usuario</p>;
 

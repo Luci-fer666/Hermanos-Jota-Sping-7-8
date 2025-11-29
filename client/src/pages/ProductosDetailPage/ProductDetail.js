@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { CartContext } from '../../auth/CartContext';
 import './ProductDetail.css';
 
-function ProductoDetail({ agregarAlCarrito }) {
+function ProductoDetail() {
+  const { addItemToCart } = useContext(CartContext);
   const navigate = useNavigate();
   const { id } = useParams();
   const [producto, setProducto] = useState(null);
@@ -79,9 +81,8 @@ function ProductoDetail({ agregarAlCarrito }) {
         <button
           className="btn"
           type="button"
-          data-id={producto._id}
           onClick={() => {
-            agregarAlCarrito(producto._id);
+            addItemToCart(producto);
             alert(`El producto "${producto.nombre}" se agregó al carrito`);
           }}
         >

@@ -1,65 +1,52 @@
 import './BodyCarrito.css';
-import ProductCard from '../../components/ProductCard/ProductCard';
-import React, { useState, useEffect } from 'react';
+import CarritoCard from '../../components/CarritoProductCart/CarritoCart';
+import React, { useContext } from 'react';
+import { CartContext } from '../../auth/CartContext';
 
-function CarritoBody({carrito, verDetalleProducto}) {
-  const [productos, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+function CarritoBody() {
+  const { cartItems, clearCart} = useContext(CartContext);
 
-  useEffect(() => {
-	const fetchProducts = async () => {
-	  try {
-		const response = await fetch(`${process.env.REACT_APP_API_URL}/api/productos`);
-		if (!response.ok) {
-		  throw new Error('La respuesta de la red no fue satisfactoria');
-		}
-		const data = await response.json();
-		console.log("Productos recibidos:", data);
-		setProducts(data);
-	  } catch (err) {
-		console.error("Error fetching productos:", err);
-		setError(err);
-	  } finally {
-		setLoading(false);
-	  } };
-	fetchProducts(); }, []);
-  if (loading) {
-	return <p>Cargando productos...</p>; }
-  if (error) {
-	return <p>Error al cargar los datos: {error.message}</p>; }
+  const total = cartItems.reduce(
+    (acc, item) => acc + item.precio * item.quantity,
+    0
+  );
 
-	const productosEnCarrito = productos.filter(p => carrito.includes(p._id));
-    return (<>
-    	<main className="contenido">
-			<div className="background-main">
-				<h1>Carrito de compras</h1>
-				{productosEnCarrito.length === 0 && <p>No hay productos en el carrito.</p>}
-				<section className="resumen-carrito">
-					<ul id="carrito-lista" className="carrito-grid" aria-live="polite">
-					{productosEnCarrito.map(producto => (
-						<ProductCard  
-							verDetalleProducto={verDetalleProducto}
-							id={producto._id}
-							nombre={producto.nombre}
-							precio={producto.precio}
-							descripcion={producto.descripcion}
-							imagen={producto.imagenUrl}/>
-						))}
-					</ul>
+  return (
+    <main className="contenido">
+      <div className="background-main">
+        <h1>Carrito de compras</h1>
 
-					<div className="total">
-						<p>Total: <strong>
-							<span id="carrito-total">
-								ARS $
-								{productosEnCarrito.reduce((total, p) => total + p.precio, 0)}
-							</span></strong>
-						</p>
-						<button id="vaciar-carrito" className="btncar">Vaciar carrito</button>
-					</div>
-				</section>
-			</div>
-		</main>
-    </>);
+        {cartItems.length === 0 && (
+          <p>No hay productos en el carrito.</p>
+        )}
+
+        <section className="resumen-carrito">
+          <ol id="carrito-lista" className="carrito-grid" aria-live="polite">
+
+            {cartItems.map((producto) => (
+              <CarritoCard
+				key={producto._id}
+                producto={producto}
+              />
+            ))}
+
+          </ol>
+
+          <div className="total">
+            <p>
+              Total:{' '}
+              <strong>
+                ARS ${total}
+              </strong>
+            </p>
+            <button id="vaciar-carrito" className="btncar" onClick={clearCart}>
+              Vaciar carrito
+            </button>
+          </div>
+        </section>
+      </div>
+    </main>
+  );
 }
+
 export default CarritoBody;
