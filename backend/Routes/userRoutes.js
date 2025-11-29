@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const users = require('../usuarios');
-const Usuario = require('../DB/models/User');
+const User = require('../DB/models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
@@ -15,24 +15,23 @@ router.post('/register', async (req, res, next) => {
     if (existingUser) {
       return res.status(400).json({ message: 'El email o nombre de usuario ya está en uso.' });
     }
-    if(!password || password.lengh < 6 ||
-      !password.match(/[A-Z]/) || !password.match(/[/W_]/) 
-    ){
+    if (
+      !password ||
+      password.length < 6 || !password.match(/[A-Z]/) || !password.match(/[\W_]/)                  
+    ) {
       return res.status(400).json({
-        message: "La contraseña no cumple con los requisitos de seguridad",});
+        message: "La contraseña no cumple con los requisitos de seguridad",
+      });
     }
-
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
-
-    const nuevoUsuario = new Usuario({
+    const nuevoUsuario = new User({
       username,
       email,
-      password: hashedPassword,}
-    );
-
+      password: hashedPassword,
+    });
     const usuarioGuardado = await nuevoUsuario.save();
-    res.status(201).json({message: 'Usuario creado', usuario: usuarioGuardado});
+    res.status(201).json({ message: 'Usuario creado', usuario: usuarioGuardado });
 
   } catch (error) {
     error.status = 400;

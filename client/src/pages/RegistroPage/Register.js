@@ -24,7 +24,7 @@ function Register() {
     console.log("Datos a enviar:", formData);
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users/register`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/users/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -33,7 +33,8 @@ function Register() {
       });
 
       if (!response.ok) {
-        throw new Error('El registro falló.');
+        const errorData = await response.json();
+        throw new Error(errorData.message || "El registro falló.");
       }
 
       alert(`¡Registro exitoso para ${formData.username}!`);
