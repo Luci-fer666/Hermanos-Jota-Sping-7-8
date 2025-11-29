@@ -4,7 +4,8 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 function Navbar({ contadorCuenta }) {
-  const { currentUser, logout } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
+  const userId = currentUser?.id;
   return (
     <>
       <header className="site-header">
@@ -30,9 +31,8 @@ function Navbar({ contadorCuenta }) {
           </Link>
           {currentUser ? (
             <>
-              <span> Bienvenido, {currentUser.username}</span>
-              <button onClick={logout}>Logout</button>
-             </>) : 
+              <Link to={`/perfil/${userId}`}>MiPerfil</Link>
+            </>) : 
             (
             <Link to="/login">Login</Link>
             )}
