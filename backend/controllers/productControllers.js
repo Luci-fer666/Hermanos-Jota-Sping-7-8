@@ -23,8 +23,44 @@ const addProduct = asyncHandler(async (req, res) => {
     res.status(201).json({message: 'Producto creado', producto: productoGuardado});
 });
 
+const updateProductById = asyncHandler(async (req, res, next) => {
+    const productoId = req.params.id;
+    const datosActualizados = req.body;
+
+    const productoActualizado = await Product.findByIdAndUpdate(productoId, datosActualizados, {new: true, runValidators: true});
+
+    if (!productoActualizado) {
+        const error = new Error('Producto no encontrado para actualizar');
+        error.status = 404;
+        return next(error);
+    }
+
+    res.status(200).json({
+        message: 'Producto actualizado con exito!',
+      producto: productoActualizado
+    });
+});
+
+const deleteProductById = asyncHandler(async (req, res, next) => {
+    const productoId = req.params.id;
+    const productoEliminado = await Product.findByIdAndDelete(productoId);
+
+    if (!productoEliminado) {
+      const error = new Error('No se encontró el producto a eliminar.');
+      error.status(404);
+      return next(error);
+    }
+
+    res.status(200).json({
+      message: 'Producto eliminado con exito!',
+      producto: productoEliminado
+    });
+});
+
 module.exports = {
     getAllProducts,
     getProductById,
-    addProduct
+    addProduct,
+    updateProductById,
+    deleteProductById
 };

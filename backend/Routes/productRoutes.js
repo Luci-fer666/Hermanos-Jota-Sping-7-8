@@ -7,16 +7,24 @@ const {
     getAllProducts,
     getProductById,
     addProduct,
+    updateProductById,
+    deleteProductById,
 } = require('../controllers/productControllers.js');
 
 
-// GET /productos → devuelve todos los productos
+// GET /api/productos → devuelve todos los productos
 router.get('/', getAllProducts);
 
-// GET /productos/:id → devuelve un producto por ID
+// GET /api/productos/:id → devuelve un producto por ID
 router.get('/:id', getProductById);
 
-// POST /productos → crea un producto si el usuario es admin
+// POST /api/productos → crea un producto si el usuario es admin
 router.post('/', authMiddleware, adminGuard, addProduct);
+
+// PUT /api/productos/:id → actualiza un producto si el usuario es admin
+router.put('/:id', authMiddleware, adminGuard, updateProductById);
+
+// DELETE /api/productos/:id → borra un producto si el usuario es admin
+router.delete('/:id', authMiddleware, adminGuard, deleteProductById);
 
 module.exports = router;
