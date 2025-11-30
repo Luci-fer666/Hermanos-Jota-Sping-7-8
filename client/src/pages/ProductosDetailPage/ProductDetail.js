@@ -91,6 +91,9 @@ function ProductoDetail() {
             <li><strong>Mas Caracteristicas:</strong> {producto.masCaracteristicas} </li>
           </ul>
         </div>
+        {!producto.stock > 0 ? (
+            <p>No hay stock para este producto</p>
+          ) : (
         <button
           className="btn"
           type="button"
@@ -100,7 +103,7 @@ function ProductoDetail() {
           }}
         >
           Agregar al Carrito
-        </button>
+        </button>)}
       {currentUser && currentUser.roles?.includes('admin') && (
         <button
           onClick={EliminarProducto}

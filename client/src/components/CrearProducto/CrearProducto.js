@@ -13,6 +13,7 @@ function CrearProducto() {
     descripcion: "",
     medidas: "",
     materiales: "",
+    stock: "",
     masCaracteristicas: "",
   });
 
@@ -50,7 +51,7 @@ function CrearProducto() {
       //const result = await response.json();
       alert(`¡Creacion exitosa para ${formData.nombre}`);
       
-      setFormData({ nombre: '', imagenUrl: '', precio: '', descripcion: '', medidas: "", materiales: "", masCaracteristicas: ""});
+      setFormData({ nombre: '', imagenUrl: '', precio: '', descripcion: '', medidas: "", materiales: "", stock: "", masCaracteristicas: ""});
       //navigate(`/producto/${result._id}`);
       navigate("/productos")
  
@@ -132,6 +133,17 @@ return (
             id="materiales"
             name="materiales"
             value={formData.materiales}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="campo-formulario">
+          <label htmlFor="stock">Stock:</label>
+          <input
+            type="number"
+            id="stock"
+            name="stock"
+            value={formData.stock}
             onChange={handleChange}
           />
         </div>
