@@ -4,6 +4,7 @@ import React, { useContext } from 'react';
 import { CartContext } from '../../auth/CartContext';
 import { AuthContext } from '../../auth/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { jwtDecode } from "jwt-decode";
 
 function CarritoBody() {
   const { cartItems, clearCart} = useContext(CartContext);
@@ -17,11 +18,16 @@ function CarritoBody() {
 
    const realizarPedido = async () => {
     try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        alert("No hay sesión activa");
+        return;
+      }
       const response = await fetch(`${process.env.REACT_APP_API_URL}/api/mis-compras`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${localStorage.getItem("token")}`
+          "Authorization": `Bearer ${token}`
         },
         body: JSON.stringify({
           items: cartItems,
@@ -35,10 +41,12 @@ function CarritoBody() {
       }
       alert("Pedido realizado con éxito!");
       clearCart();
+      const decoded = jwtDecode(token);
+      const userId = decoded.id;
+      navigate(`/mis-pedidos/${userId}`);
     } catch (error) {
       console.error(error);
       alert("Error inesperado");
-      navigate(`/mis-pedidos/${currentUser._id}`);
     }
   };
 
