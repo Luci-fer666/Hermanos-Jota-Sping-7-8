@@ -1,10 +1,12 @@
 import { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { CartContext } from '../../auth/CartContext';
+import { AuthContext } from '../../auth/AuthContext.js';
 import './ProductDetail.css';
 
 function ProductoDetail() {
   const { addItemToCart } = useContext(CartContext);
+  const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const { id } = useParams();
   const [producto, setProducto] = useState(null);
@@ -90,13 +92,16 @@ function ProductoDetail() {
         >
           Agregar al Carrito
         </button>
+      {currentUser && currentUser.roles?.includes('admin') && (
         <button
           onClick={EliminarProducto}
           className="btn"
           type="button"
-          data-id={producto._id}>
+          data-id={producto._id}
+        >
           Eliminar Producto
         </button>
+      )}
       </div>
     </main>
   );

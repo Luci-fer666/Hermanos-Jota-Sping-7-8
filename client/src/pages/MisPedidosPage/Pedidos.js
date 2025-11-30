@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { AuthContext } from '../../auth/AuthContext.js';
-import CarritoCard from '../../components/CarritoProductCart/CarritoCart';
+import TarjetaPedido from '../../components/TarjetaPedido/TarjetaPedido.js';
 import { useNavigate } from 'react-router-dom';
 import './Pedidos.css';
 
@@ -61,15 +61,13 @@ function Pedidos() {
 
   return (
   <>
-   <ul id="lista-productos" className="product-grid" aria-live="polite">
-            {pedidos.map(pedido => (
-              <div key={pedido._id}>
-                <CarritoCard
-                  producto={pedido}
-                  />
-              </div>
-              ))}
-          </ul>
+      <ul id="lista-productos" className="product-grid" aria-live="polite">
+        {pedidos.map((pedido) => (
+          <li key={pedido._id}>
+            <TarjetaPedido pedido={pedido} />
+          </li>
+        ))}
+      </ul>
   </>
   )
 };
