@@ -65,17 +65,13 @@ const login = asyncHandler(async (req, res) => {
 });
 
 const getAllUsers = asyncHandler(async (req, res) => {
-    res.json(User);
+    const users = await User.find();
+    res.json(users);
 });
 
 const getUserById = asyncHandler(async (req, res) => {
-    const id = parseInt(req.params.id);
-    const user = User.find(u => u.id === id);
-
-    if (!user) {
-        return res.status(404).json({ message: 'Usuario no encontrado' });
-    }
-
+    const user = await User.findById(req.params.id).select('-password');
+    if (!user) return res.status(404).json({ message: 'Usuario no encontrado' });
     res.json(user);
 });
 

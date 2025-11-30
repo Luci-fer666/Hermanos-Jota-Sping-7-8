@@ -11,6 +11,32 @@ function CarritoBody() {
     0
   );
 
+   const realizarPedido = async (cartItems, total) => {
+    try {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/mis-compras`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify({
+          items: cartItems,
+          total: total
+        })
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        alert(data.message || "Error al procesar pedido");
+        return;
+      }
+      alert("Pedido realizado con éxito!");
+      clearCart();
+    } catch (error) {
+      console.error(error);
+      alert("Error inesperado");
+    }
+  };
+
   return (
     <main className="contenido">
       <div className="background-main">
@@ -22,12 +48,12 @@ function CarritoBody() {
 
         <section className="resumen-carrito">
           <ol id="carrito-lista" className="carrito-grid" aria-live="polite">
-
             {cartItems.map((producto) => (
-              <CarritoCard
-				key={producto._id}
-                producto={producto}
-              />
+              <div key={producto._id}>
+                <CarritoCard
+                  producto={producto}
+                />
+              </div>
             ))}
 
           </ol>
@@ -41,6 +67,11 @@ function CarritoBody() {
             </p>
             <button id="vaciar-carrito" className="btncar" onClick={clearCart}>
               Vaciar carrito
+            </button>
+            <button id="vaciar-carrito" className="btncar" 
+            onClick={() => realizarPedido(cartItems, total)}
+            >
+              Realizar pedido
             </button>
           </div>
         </section>

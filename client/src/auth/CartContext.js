@@ -1,14 +1,14 @@
 import React, { createContext, useState } from 'react';
 export const CartContext = createContext();
 
-
-
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
+
   const addItemToCart = (productToAdd) => {
+  if (productToAdd.stock > 0) {
     setCartItems(prevItems => {
       const existingItem = prevItems.find(item => item._id === productToAdd._id);
- 
+
       if (existingItem) {
         return prevItems.map(item =>
           item._id === productToAdd._id
@@ -16,10 +16,15 @@ export const CartProvider = ({ children }) => {
             : item
         );
       }
+
       return [...prevItems, { ...productToAdd, quantity: 1 }];
     });
-  };
 
+    return;
+  }
+
+  alert("No hay stock de este producto");
+};
 
     const clearCart = () => {
     setCartItems([]);

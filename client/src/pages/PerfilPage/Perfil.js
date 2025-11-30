@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { AuthContext } from '../../auth/AuthContext.js';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Perfil.css';
 
 function Perfil() {
@@ -22,10 +23,11 @@ function Perfil() {
         const response = await fetch(`${process.env.REACT_APP_API_URL}/api/users/${id}`);
 
         if (response.status === 404) {
-        setUser(null);
-        setLoading(false);
-        return;
-      }
+          setUser(null);
+          setLoading(false);
+          return;
+        }
+
         if (!response.ok) {
           throw new Error('No se pudo obtener el usuario');
         }
@@ -51,27 +53,35 @@ function Perfil() {
   if (loading) return <p>Cargando perfil...</p>;
   if (!currentUser){
     navigate("/login");
-    return <p>Debes iniciar sesión para visualizar esta página</p>;}
+    return <p>Debes iniciar sesión para visualizar esta página</p>;
+  }
   if (error) return <p>Error: {error.message}</p>;
   if (!user) return <p>No se encontró el usuario</p>;
 
   return (
     <main id="perfil-container">
-        <div id="perfil-info">
-          <h2>{user.username}</h2>
+      <div className="perfil-card">
+        <h2 className="perfil-nombre">{user.username}</h2>
 
-          <img
-            id="imagen"
-            src="https://www.svgrepo.com/show/384670/account-avatar-profile-user.svg"
-            alt={user.username}
-          />
+        <img
+          className="perfil-imagen"
+          src="https://www.svgrepo.com/show/384670/account-avatar-profile-user.svg"
+          alt={user.username}
+        />
 
-          <ul>
-            <li><strong>Usuario:</strong> {user.username}</li>
-            <li><strong>Email:</strong> {user.email}</li>
-            <button onClick={logout}>Logout</button>
-          </ul>
+        <ul className="perfil-lista">
+          <li><strong>Usuario:</strong> {user.username}</li>
+          <li><strong>Email:</strong> {user.email}</li>
+          <li><strong>Rol:</strong> {user.roles}</li>
+        </ul>
+
+        <button className="btn-logout" onClick={logout}>Logout</button>
+
+        <div className="perfil-links">
+          <Link className="perfil-link" to="/carrito">Mi carrito</Link>
+          <Link className="perfil-link" to={`/mis-pedidos/${user._id}`}>Mis pedidos</Link>
         </div>
+      </div>
     </main>
   );
 }

@@ -32,12 +32,11 @@ function ProductList() {
     return (<>
         <ul id="lista-productos" className="product-grid" aria-live="polite">
           {productos.map(producto => (
-            <li key={producto._id}>
+            <div key={producto._id}>
               <ProductCard 
-                key={producto._id}
                 producto={producto}
                 />
-            </li>
+            </div>
             ))}
         </ul>
     </>);

@@ -25,7 +25,7 @@ function App() {
         <Route path="/login" element={ <Login/> } />
         <Route path="/perfil/:id" element={ <Perfil/> } />
         <Route path="/admin/crear-producto" element={ <CrearProducto/> } />
-        <Route path='/mis-pedidos' element={ <Pedidos/> } />
+        <Route path='/mis-pedidos/:id' element={ <Pedidos/> } />
         <Route path="/producto/:id" element={ <ProductoIndividualBody /> } />
       </Routes>
       <Footer/> 

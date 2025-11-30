@@ -25,6 +25,7 @@ function CarritoCard({ producto }) {
 
         <p className="carrito-cantidad">
           Cantidad: <strong>{producto.quantity}</strong>
+          Precio por cantidad: <strong>{producto.quantity * producto.precio}</strong>
         </p>
 
         <button

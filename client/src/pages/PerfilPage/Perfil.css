@@ -1,0 +1,92 @@
+/* Contenedor principal */
+#perfil-container {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+  background: #f9f5f0; /* beige muy claro */
+  min-height: 100vh;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* Tarjeta del perfil */
+.perfil-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 450px;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+  border: 1px solid #e8ddd0; /* borde marrón claro */
+}
+
+/* Nombre del usuario */
+.perfil-nombre {
+  font-size: 26px;
+  font-weight: bold;
+  color: #5c4630; /* marrón oscuro */
+  margin-bottom: 20px;
+}
+
+/* Imagen */
+.perfil-imagen {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  padding: 10px;
+  background: #f2e7da;
+  border: 2px solid #d5c4b1;
+}
+
+/* Lista de datos */
+.perfil-lista {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+  text-align: left;
+  color: #6b5642;
+}
+
+.perfil-lista li {
+  margin-bottom: 10px;
+}
+
+/* Botón logout */
+.btn-logout {
+  display: inline-block;
+  background: #8b6b4a;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+  transition: background 0.3s ease;
+}
+
+.btn-logout:hover {
+  background: #6d5236;
+}
+
+/* Links */
+.perfil-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.perfil-link {
+  text-decoration: none;
+  color: #8b6b4a;
+  padding: 10px;
+  background: #f2e7da;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+  font-weight: 500;
+}
+
+.perfil-link:hover {
+  background: #e9dac6;
+}
