@@ -51,7 +51,7 @@ function CarritoBody() {
   return (
     <main className="contenido">
       <div className="background-main">
-        <h1>Carrito de compras</h1>
+        <h1 class="titulo-pagina">Carrito de compras</h1>
 
         {cartItems.length === 0 && (
           <p>No hay productos en el carrito.</p>

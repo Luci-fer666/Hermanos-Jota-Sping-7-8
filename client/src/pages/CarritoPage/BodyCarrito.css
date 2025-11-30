@@ -7,6 +7,13 @@
   width: 85%;
   margin-left: 5%;
   margin-right: 5%;
+  padding: 20px;
+}
+.titulo-pagina {
+  margin-bottom: 25px;
+  color: #333;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
 }
 .contenido {
   max-width: 960px;
