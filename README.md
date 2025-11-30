@@ -114,8 +114,8 @@ Cuenta con componentes de:
 </ol>
 
 ## Link a Render y Vercel
-- Backend: https://hermanos-jota-sping-5-6.onrender.com
-- Vercel: https://hermanos-jota-sping-5-6.vercel.app/
+- Backend: [https://hermanos-jota-sping-5-6.onrender.com](https://hermanos-jota-sping-7-8-grupo-14.onrender.com/)
+- Vercel: 
 
 ## Capturas
 <img width="1920" height="1080" alt="Captura de pantalla 2025-11-01 215833" src="https://github.com/user-attachments/assets/6790490b-6fca-424e-ad5b-37ecd474f008" />
