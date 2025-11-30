@@ -58,7 +58,7 @@ function CrearProducto() {
       alert(error.message);
     }
   };
-    if (!currentUser || !currentUser.rol || !currentUser.roles.includes('admin')) 
+    if (!currentUser || !currentUser.roles || !currentUser.roles.includes('admin')) 
       {
         return <p>Debes logearte como administrador para crear productos</p>;
       }

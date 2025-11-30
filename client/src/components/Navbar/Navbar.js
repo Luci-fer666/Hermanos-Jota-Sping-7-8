@@ -40,21 +40,6 @@ function Navbar() {
             <Link to="/login">Login</Link>
             )}
         </nav>
-
-        <form className="search" role="search">
-          <label htmlFor="q" className="visually-hidden">
-            Buscar
-          </label>
-          <input
-            id="q"
-            name="q"
-            type="search"
-            placeholder="Buscar muebles…"
-          />
-          <button id="boton-buscar" type="submit">
-            Buscar
-          </button>
-        </form>
       </header>
     </>
   );
