@@ -2,10 +2,12 @@ import './BodyCarrito.css';
 import CarritoCard from '../../components/CarritoProductCart/CarritoCart';
 import React, { useContext } from 'react';
 import { CartContext } from '../../auth/CartContext';
+import { AuthContext } from '../../auth/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 function CarritoBody() {
   const { cartItems, clearCart} = useContext(CartContext);
+  const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const total = cartItems.reduce(
@@ -36,7 +38,7 @@ function CarritoBody() {
     } catch (error) {
       console.error(error);
       alert("Error inesperado");
-      navigate('/mis-pedidos/${user._id}');
+      navigate(`/mis-pedidos/${currentUser._id}`);
     }
   };
 
@@ -72,7 +74,7 @@ function CarritoBody() {
               Vaciar carrito
             </button>
             <button id="vaciar-carrito" className="btncar" 
-            onClick={() => realizarPedido}
+            onClick={() => realizarPedido()}
             >
               Realizar pedido
             </button>
