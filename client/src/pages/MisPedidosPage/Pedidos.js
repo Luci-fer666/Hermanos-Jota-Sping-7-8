@@ -1,7 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { AuthContext } from '../../auth/AuthContext.js';
-import TarjetaPedido from '../../components/TarjetaPedido/TarjetaPedido.js';
 import { useNavigate } from 'react-router-dom';
 import './Pedidos.css';
 
