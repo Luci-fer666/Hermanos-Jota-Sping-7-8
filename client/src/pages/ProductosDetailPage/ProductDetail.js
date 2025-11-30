@@ -46,8 +46,17 @@ function ProductoDetail() {
   const EliminarProducto = async () => {
     if (!window.confirm(`¿Seguro que querés este producto super cool llamado: "${producto.nombre}"?`)) return;
     try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        alert("No hay sesión activa");
+        return;
+      }
     const response = await fetch(`${process.env.REACT_APP_API_URL}/api/productos/${producto._id}`, {
       method: 'DELETE',
+      headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
     });
 
     if (!response.ok) {

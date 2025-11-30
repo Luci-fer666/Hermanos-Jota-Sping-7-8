@@ -2,13 +2,11 @@ import './BodyCarrito.css';
 import CarritoCard from '../../components/CarritoProductCart/CarritoCart';
 import React, { useContext } from 'react';
 import { CartContext } from '../../auth/CartContext';
-import { AuthContext } from '../../auth/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from "jwt-decode";
 
 function CarritoBody() {
   const { cartItems, clearCart} = useContext(CartContext);
-  const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const total = cartItems.reduce(

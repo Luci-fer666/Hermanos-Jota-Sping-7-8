@@ -29,10 +29,16 @@ function CrearProducto() {
     console.log("Datos a enviar:", formData);
  
     try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        alert("No hay sesión activa");
+        return;
+      }
       const response = await fetch(`${process.env.REACT_APP_API_URL}/api/productos`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          "Authorization": `Bearer ${token}`
         },
         body: JSON.stringify(formData), 
       });
