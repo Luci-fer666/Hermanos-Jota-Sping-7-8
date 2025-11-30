@@ -77,11 +77,25 @@ const getUserById = asyncHandler(async (req, res) => {
     }
 
     res.json(user);
-})
+});
+
+const getMyProfile = asyncHandler(async (req, res) => {
+    const userId = req.user.id; 
+
+    const user = await User.findById(userId).select('-password');
+
+    if (!user) {
+        res.status(404);
+        throw new Error('Usuario no encontrado');
+    }
+
+    res.json(user);
+});
 
 module.exports = {
     register,
     login,
     getAllUsers,
-    getUserById
+    getUserById,
+    getMyProfile
 };
