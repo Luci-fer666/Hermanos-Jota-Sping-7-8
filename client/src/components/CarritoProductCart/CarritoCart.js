@@ -10,7 +10,7 @@ function CarritoCard({ producto }) {
     <li className="carrito-card">
       <img
         className="carrito-img"
-        src={producto.imagen}
+        src={producto.imagenUrl}
         alt={producto.nombre}
       />
 
@@ -24,7 +24,7 @@ function CarritoCard({ producto }) {
         </p>
 
         <p className="carrito-cantidad">
-          Cantidad: <strong>{producto.quantity}</strong>
+          Cantidad: <strong>{producto.quantity} </strong>
           Precio por cantidad: <strong>{producto.quantity * producto.precio}</strong>
         </p>
 

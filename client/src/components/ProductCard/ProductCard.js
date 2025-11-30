@@ -6,7 +6,7 @@ function ProductCard({producto}) {
     return (
     <li className="producto-item">
       <Link to={`/producto/${producto._id}`}>
-        <img src={producto.imagen} alt={producto.nombre}/>
+        <img src={producto.imagenUrl} alt={producto.nombre}/>
       </Link>
         
       <Link to={`/producto/${producto._id}`}>
