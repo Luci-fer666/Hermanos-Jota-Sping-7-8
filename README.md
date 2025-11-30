@@ -115,7 +115,7 @@ Cuenta con componentes de:
 
 ## Link a Render y Vercel
 - Backend: [https://hermanos-jota-sping-7-8-grupo-14.onrender.com](https://hermanos-jota-sping-7-8-grupo-14.onrender.com/)
-- Vercel: [https://luci-fer666-hermanos-jota-sping-7-8-nu.vercel.app/perfil/692c8ccd407553e2358e0437](https://luci-fer666-hermanos-jota-sping-7-8-nu.vercel.app/perfil/692c8ccd407553e2358e0437)
+- Vercel: [https://luci-fer666-hermanos-jota-sping-7-8-nu.vercel.app](https://luci-fer666-hermanos-jota-sping-7-8-nu.vercel.app)
 
 ## Capturas
 <img width="1920" height="1080" alt="Captura de pantalla 2025-11-01 215833" src="https://github.com/user-attachments/assets/6790490b-6fca-424e-ad5b-37ecd474f008" />
