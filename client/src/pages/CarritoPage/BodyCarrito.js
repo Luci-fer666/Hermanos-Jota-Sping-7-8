@@ -2,16 +2,18 @@ import './BodyCarrito.css';
 import CarritoCard from '../../components/CarritoProductCart/CarritoCart';
 import React, { useContext } from 'react';
 import { CartContext } from '../../auth/CartContext';
+import { useNavigate } from 'react-router-dom';
 
 function CarritoBody() {
   const { cartItems, clearCart} = useContext(CartContext);
+  const navigate = useNavigate();
 
   const total = cartItems.reduce(
     (acc, item) => acc + item.precio * item.quantity,
     0
   );
 
-   const realizarPedido = async (cartItems, total) => {
+   const realizarPedido = async () => {
     try {
       const response = await fetch(`${process.env.REACT_APP_API_URL}/api/mis-compras`, {
         method: "POST",
@@ -34,6 +36,7 @@ function CarritoBody() {
     } catch (error) {
       console.error(error);
       alert("Error inesperado");
+      navigate('/mis-pedidos/${user._id}');
     }
   };
 
@@ -69,7 +72,7 @@ function CarritoBody() {
               Vaciar carrito
             </button>
             <button id="vaciar-carrito" className="btncar" 
-            onClick={() => realizarPedido(cartItems, total)}
+            onClick={() => realizarPedido}
             >
               Realizar pedido
             </button>
