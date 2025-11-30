@@ -18,7 +18,7 @@ const productSchema = new mongoose.Schema({
     imagenUrl:{
         type: String
     }}, {
-        timestapms: true, // lo agrego para más control, no es necesario
+        timestamps: true, // lo agrego para más control, no es necesario
         strict: false
     }
 );
