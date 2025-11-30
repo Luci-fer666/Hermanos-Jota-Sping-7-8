@@ -66,10 +66,13 @@ Por el lado del frontend, este se aloja en el puerto 3000, teniendo las rutas
 - Inicio <b>"/"</b>
 - El catálogo <b>"/productos"<b>
 - El detalle de producto <b>"/productos/:id"</b>
+- El carrito <b>"/carrito"<b>
 - El formulario de contacto <b>"/contacto"</b>
 - Añadir productos <b>"/admin/crear-producto"</b>
 - Iniciar seción <b>"/login"</b>
 - Registrarse <b>"/register"</b>
+- Perfil del usuario <b>"/perfil/:id"</b>
+- Pedidos del usuario <b>/mis-pedidos/:id</b>
 
 Este apartado cuenta con secciones de Inicio, Productos,, Producto Individual, Creacion de Producto, Contacto, Perfil de Usuario, Registro, Login, Compras del Usuario y un Carrito, los cuales comparten espacio un unico archivo html utilizando React Router DOM para gestionar la navegación.
 
@@ -84,6 +87,20 @@ Cuenta con componentes de:
 - CrearProducto         Formulario para crear un nuevo producto
 - CarritoProductCart    Lista de los productos seleccionados por el usuario, se pueden
                         eliminar o realiar la compra de todos.
+
+Autenticadores contextuales:
+- AuthContext            Gestiona la autenticacion del usuario
+- CartContext            Gestiona el contexto del carrito y sus items
+
+Paginas:
+- CarritoPage
+- HomePage
+- LoginPage
+- MisPedidosPage
+- PerfilPage
+- ProductosDetailPage
+- ProductosPage
+- RegistroPage
 
 ## Cómo ejecutar
  Proyecto React + Express
