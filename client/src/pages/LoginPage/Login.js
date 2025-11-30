@@ -30,7 +30,8 @@ function Login() {
         body: JSON.stringify(formData),
       });
       if (!response.ok) {
-        throw new Error('El inicio de sesión falló.');
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Error en el servidor al iniciar sesión');
       }
      
       const data = await response.json(); 
