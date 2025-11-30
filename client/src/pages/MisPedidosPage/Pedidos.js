@@ -69,17 +69,51 @@ function Pedidos() {
   if (!pedidos) return <p>No se encontraron pedidos</p>;
 
   return (
-  <>
-   <ul id="lista-productos" className="product-grid" aria-live="polite">
-            {pedidos.map(pedido => (
-              <div key={pedido._id}>
-                <CarritoCard
-                  producto={pedido}
-                  />
+    <main className="contenido-pedidos">
+      <h1 className="titulo-pagina">Mis Pedidos</h1>
+
+      {pedidos.length === 0 && (
+        <p>No has realizado ninguna compra todavía.</p>
+      )}
+
+      <div className="lista-pedidos">
+        {pedidos.map((pedido) => ( 
+          <div key={pedido._id} className="pedido-card">
+            
+            <div className="pedido-header">
+              <div className="info-pedido">
+                <h3>Pedido #{pedido._id.slice(-6)}</h3>
+                <span className="fecha-pedido">
+                  {new Date(pedido.createdAt).toLocaleDateString()}
+                </span>
               </div>
-              ))}
-          </ul>
-  </>
-  )
-};
+              
+              <div className="resumen-pedido">
+                <p className="total-monto">Total: ${pedido.total}</p>
+              </div>
+            </div>
+
+            <div className="pedido-items">
+              <h4>Productos:</h4>
+              <ul className="lista-items">
+                {pedido.items.map((item, index) => (
+                  <li key={index} className="item-detalle">
+                    <div className="item-nombre">
+                      {item.nombre} 
+                      <small className="item-cantidad">(x{item.cantidad})</small>
+                    </div>
+                    <div className="item-precio">
+                      ${item.precio * item.cantidad}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+          </div>
+        ))}
+      </div>
+    </main>
+  );
+}
 export default Pedidos;
