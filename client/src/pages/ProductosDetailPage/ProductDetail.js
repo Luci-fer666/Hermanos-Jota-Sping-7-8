@@ -18,7 +18,8 @@ function ProductoDetail() {
       try {
         const response = await fetch(`${process.env.REACT_APP_API_URL}/api/productos/${id}`);
         if (!response.ok) {
-          throw new Error('La respuesta de la red no fue satisfactoria D:');
+          const errorData = await response.json();
+        throw new Error(errorData.message || 'La respuesta de la red no fue satisfactoria D:');
         }
         const data = await response.json();
         console.log("Producto recibido:", data);
@@ -48,7 +49,8 @@ function ProductoDetail() {
     });
 
     if (!response.ok) {
-      throw new Error('Error al eliminar el producto D:');
+      const errorData = await response.json();
+        throw new Error(errorData.message || 'Error al eliminar el producto D:');
     }
 
     alert(`"${producto.nombre}" fue eliminado correctamente. :c `);

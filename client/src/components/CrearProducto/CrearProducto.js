@@ -38,7 +38,8 @@ function CrearProducto() {
       });
 
       if (!response.ok) {
-        throw new Error('La creacion falló.');
+        const errorData = await response.json();
+        throw new Error(errorData.message ||'La creacion falló.');
       }
       //const result = await response.json();
       alert(`¡Creacion exitosa para ${formData.nombre}`);
@@ -51,7 +52,7 @@ function CrearProducto() {
       alert(error.message);
     }
   };
-    if (!currentUser || !currentUser.rol || !currentUser.rol.includes('admin')) 
+    if (!currentUser || !currentUser.rol || !currentUser.roles.includes('admin')) 
       {
         return <p>Debes logearte como administrador para crear productos</p>;
       }

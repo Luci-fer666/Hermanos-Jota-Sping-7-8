@@ -12,7 +12,8 @@ function ProductList() {
       try {
         const response = await fetch(`${process.env.REACT_APP_API_URL}/api/productos`);
         if (!response.ok) {
-          throw new Error('La respuesta de la red no fue satisfactoria');
+        const errorData = await response.json();
+        throw new Error(errorData.message ||'La respuesta de la red no fue satisfactoria');
         }
         const data = await response.json();
         console.log("Productos recibidos:", data);

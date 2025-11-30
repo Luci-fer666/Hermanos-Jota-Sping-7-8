@@ -29,7 +29,8 @@ function Pedidos() {
         }
 
         if (!response.ok) {
-          throw new Error('No se pudo obtener los pedidos del usuario');
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'No se pudo obtener los pedidos del usuario');
         }
 
         const data = await response.json();
