@@ -20,26 +20,35 @@ function Pedidos() {
       setError(null);
 
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/mis-compras`);
+        const token = localStorage.getItem("token");
+        if (!token) {
+            throw new Error("No hay sesión activa");
+        }
+        
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/mis-compras`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            }
+        });
 
         if (response.status === 404) {
-          setPedidos(null);
+          setPedidos([]);
           setLoading(false);
           return;
         }
 
         if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || 'No se pudo obtener los pedidos del usuario');
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'No se pudo obtener los pedidos');
         }
 
         const data = await response.json();
-        console.log("Pedidos recibidos:", data);
-
         setPedidos(data);
 
       } catch (err) {
-        console.error("Error al obtener los pedidos del usuario:", err);
+        console.error(err);
         setError(err);
       } finally {
         setLoading(false);

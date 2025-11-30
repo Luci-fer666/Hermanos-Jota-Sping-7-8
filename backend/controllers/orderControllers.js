@@ -34,4 +34,10 @@ const createOrder = asyncHandler(async (req, res) => {
     }
 });
 
-module.exports = {createOrder};
+const getMyOrders = asyncHandler(async (req, res) => {
+    const orders = await Order.find({ user: req.user.id }).sort({ createdAt: -1 });
+
+    res.json(orders);
+});
+
+module.exports = {createOrder, getMyOrders};
