@@ -5,6 +5,7 @@ const app = express();
 const conectarBD = require('./config/db.js');
 const Producto = require('./models/Product.js');
 const Usuario = require('./models/User.js');
+const Order = require('./models/Order.js');
 const { notFound, errorHandlerServer } = require('./middleware/errorHandlers');
 
 conectarBD();
@@ -22,9 +23,11 @@ app.use(logger);
 // Routers
 const userRoutes = require('./Routes/userRoutes');
 const productRoutes = require('./Routes/productRoutes');
+const orderRoutes = require('./Routes/orderRoutes.js');
 
 app.use('/api/users', userRoutes);
 app.use('/api/productos', productRoutes);
+app.use('/api/mis-compras', orderRoutes);
 
 // Ruta raíz solo para checkear que el servidor está vivo
 app.get('/', (req, res) => {
