@@ -6,12 +6,8 @@
 
 <div><b>Programadores: </b>
     <ul>
-    <li> <span>Lautaro Zado <a href="https://github.com/lautarozado"><img src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white"></a></li> 
-    <li>Guadalupe Grillo <a href="https://github.com/ggrillo729-art"><img src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white"></a></li> 
     <li>Luciano Illuminati <a href="https://github.com/Luci-fer666"><img src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white"></a></li> 
     <li>Lola Fioramanti <a href="https://github.com/lolafioramanti"><img src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white"></a></li> 
-    <li>Eliana Ayelen Fuchs <a href="https://github.com/ElianaAFuchs"><img src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white"></a></li> 
-    <li>Luciana Gutheim <a href="https://github.com/lucianagutheim-sudo"><img src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white"></a></li>
     </ul></div>
 
 <h2>Proyecto e-commerce para la Mueblería Hermanos Jota.</h2>
@@ -50,6 +46,8 @@ contratado a ustedes para construir su primera plataforma de e-commerce.</p>
 - MongoDB
 - Mongosee
 - GitHub Pages para el deploy
+- JWT
+- React Context API
 
 ## Descripcion
 El backend se aloja en el puerto 4000, teniendo las rutas 
@@ -73,23 +71,19 @@ Por el lado del frontend, este se aloja en el puerto 3000, teniendo las rutas
 - Iniciar seción <b>"/login"</b>
 - Registrarse <b>"/register"</b>
 
-Este apartado cuenta con secciones de Inicio, Productos,, Producto Individual, Creacion de Producto, Contacto y un Carrito, los cuales comparten espacio un unico archivo html utilizando React Router DOM para gestionar la navegación.
+Este apartado cuenta con secciones de Inicio, Productos,, Producto Individual, Creacion de Producto, Contacto, Perfil de Usuario, Registro, Login, Compras del Usuario y un Carrito, los cuales comparten espacio un unico archivo html utilizando React Router DOM para gestionar la navegación.
 
 Cuenta con componentes de: 
-- Navbar            Header, Barra de Navegacion con icono del Carrito Actualizable
-- Footer            Footer con datos varios
-- ProductCard       Tarjeta de producto reutilizable
-- ProductList       Lista de productos, contiene multiples repeticiones 
-                    de ProductCard
-- ProductDetail     Body de la pagina para observar el producto 
-                    seleccionado a detalle y añadirlo al carrito
-- ProductBody       Body de la pagina donde se renderiza el ProductList
-- BodyIndex         Body de inicio, tiene contenido de presentacion
-- BodyCarrito       Body del carrito, renderiza los productos dentro de su 
-                    array segun el id
-- ContactForm       Body del apartado contactos, con opciones de enviar mensaje 
-                    y visualizar datos de contacto
--CrearProducto      Formulario para crear un nuevo producto
+- Navbar                Header, Barra de Navegacion con icono del Carrito Actualizable
+- Footer                Footer con datos varios
+- ProductCard           Tarjeta de producto reutilizable
+- ProductList           Lista de productos, contiene multiples repeticiones 
+                        de ProductCard
+- ContactForm           Body del apartado contactos, con opciones de enviar mensaje 
+                        y visualizar datos de contacto
+- CrearProducto         Formulario para crear un nuevo producto
+- CarritoProductCart    Lista de los productos seleccionados por el usuario, se pueden
+                        eliminar o realiar la compra de todos.
 
 ## Cómo ejecutar
  Proyecto React + Express
@@ -116,7 +110,7 @@ Cuenta con componentes de:
             - npm start</li>
         <li>Backend:
             - cd backend
-            - npm start</li></li>
+            - node ./server.js</li></li>
         </ul>
 </ol>
 
@@ -128,8 +122,10 @@ Cuenta con componentes de:
 <img width="1920" height="1080" alt="Captura de pantalla 2025-11-01 215833" src="https://github.com/user-attachments/assets/6790490b-6fca-424e-ad5b-37ecd474f008" />
 <img width="1920" height="1080" alt="Captura de pantalla 2025-11-01 220640" src="https://github.com/user-attachments/assets/f78477ee-a0e8-42ca-b9b4-715a888a98c8" />
 <img width="1920" height="1080" alt="Captura de pantalla 2025-11-01 220750" src="https://github.com/user-attachments/assets/b919e1c7-cec0-4476-8a17-9cf6aac24623" />
-<img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/579db978-b89b-4e14-ae45-1e018da19936" />
-<img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/48b81df9-07e7-4f49-b256-1b03c4b0ba89" />
-<img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/71b2c079-4880-45fa-863d-4fb45cd8e31e" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/6e9a6d26-feb6-4ebb-8843-e73d6875b5be" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/85141a17-b55e-449f-9582-8a730d236147" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/317389cf-984d-4be2-a520-6f80d951a2dd" />
+
+
 
 
