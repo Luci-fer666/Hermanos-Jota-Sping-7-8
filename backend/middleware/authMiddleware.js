@@ -13,7 +13,7 @@ const verifyToken = (req, res, next) => {
 
         const decodedPayload = jwt.verify(token, process.env.JWT_SECRET, (err, decodedPayload) => {
             if (err) {
-                return res.status(403).json({message: "Error: prohibido."});
+                return res.status(403).json({message: `Error: prohibido. Detalle: ${err.message}`});
             }
 
             // metemos los datos del usuario en la petición req

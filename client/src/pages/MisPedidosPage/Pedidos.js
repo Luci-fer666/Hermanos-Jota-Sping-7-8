@@ -64,7 +64,6 @@ function Pedidos() {
             {pedidos.map(pedido => (
               <div key={pedido._id}>
                 <CarritoCard
-                  key={pedido._id}
                   producto={pedido}
                   />
               </div>
