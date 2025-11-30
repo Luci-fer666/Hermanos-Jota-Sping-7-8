@@ -55,9 +55,14 @@ contratado a ustedes para construir su primera plataforma de e-commerce.</p>
 El backend se aloja en el puerto 4000, teniendo las rutas 
 - GET <b>"/api/productos"</b> Devuelve todos los productos de la colección.
 - GET <b>"/api/productos/:id"</b> Devuelve un único producto por su _id.
-- POST <b>"/api/productos"</b> Recibe los datos de un nuevo producto en req.body, crea un nuevo documento en la base de datos y lo devuelve con un estado 201.
-- PUT <b>"/api/productos/:id"</b> Recibe datos actualizados en req.body y modifica el producto correspondiente en la base de datos.
+- POST <b>"/api/productos"</b> Si el usuario tiene rol de administrador, recibe los datos de un nuevo producto en req.body, crea un nuevo documento en la base de datos y lo devuelve con un estado 201.
+- PUT <b>"/api/productos/:id"</b> Si el usuario tiene rol de administrador, recibe datos actualizados en req.body y modifica el producto correspondiente en la base de datos.
 - DELETE <b>"/api/productos/:id"</b> Elimina un producto de la base de datos por su _id
+- GET <b>"/api/users"</b> Devuelve todos los usuarios de la base de datos.
+- GET <b>"/api/users/perfil"</b> Devuelve la página del usuario logueado.
+- GET <b>"/api/users/:id"</b> Devuelve un usuario de la base de datos con ese ID.
+- GET <b>"/api/mis-compras"</b> Devuelve todas las ordenes del usuario logueado.
+- POST <b>"/api/mis-compras"</b> Crea una orden de compra con todos los productos del carrito.
 
 Por el lado del frontend, este se aloja en el puerto 3000, teniendo las rutas
 - Inicio <b>"/"</b>
@@ -65,6 +70,8 @@ Por el lado del frontend, este se aloja en el puerto 3000, teniendo las rutas
 - El detalle de producto <b>"/productos/:id"</b>
 - El formulario de contacto <b>"/contacto"</b>
 - Añadir productos <b>"/admin/crear-producto"</b>
+- Iniciar seción <b>"/login"</b>
+- Registrarse <b>"/register"</b>
 
 Este apartado cuenta con secciones de Inicio, Productos,, Producto Individual, Creacion de Producto, Contacto y un Carrito, los cuales comparten espacio un unico archivo html utilizando React Router DOM para gestionar la navegación.
 
@@ -121,3 +128,8 @@ Cuenta con componentes de:
 <img width="1920" height="1080" alt="Captura de pantalla 2025-11-01 215833" src="https://github.com/user-attachments/assets/6790490b-6fca-424e-ad5b-37ecd474f008" />
 <img width="1920" height="1080" alt="Captura de pantalla 2025-11-01 220640" src="https://github.com/user-attachments/assets/f78477ee-a0e8-42ca-b9b4-715a888a98c8" />
 <img width="1920" height="1080" alt="Captura de pantalla 2025-11-01 220750" src="https://github.com/user-attachments/assets/b919e1c7-cec0-4476-8a17-9cf6aac24623" />
+<img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/579db978-b89b-4e14-ae45-1e018da19936" />
+<img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/48b81df9-07e7-4f49-b256-1b03c4b0ba89" />
+<img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/71b2c079-4880-45fa-863d-4fb45cd8e31e" />
+
+
